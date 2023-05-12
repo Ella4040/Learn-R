@@ -1,0 +1,42 @@
+---
+title: "Exercice Sda"
+output: html_document
+date: "2023-05-11"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(readr)
+# Loading the dataset into a variable named dataChapter6
+dataChapter6 <- readr::read_csv("./chapter6data.csv")
+```
+```{r}
+library(readr)
+gdp <- readr::read_csv("./chapter6data.csv")
+```
+
+```{r}
+library(gsheet)
+locations <-gsheet::gsheet2tbl("https://docs.google.com/spreadsheets/d/1nehKEBKTQx11LZuo5ZJFKTVS0p5y1ysMPSOSX_m8dS8/edit?usp=sharing")
+head(locations)
+```
+```{r}
+library(readr)
+country <- readr::read_csv("./gdpCountry.csv")
+```
+
+```{r}
+# Delete the column named 'X1'
+gdp$X1 <- NULL
+# Show columns' name
+colnames(gdp)
+```
+```{r}
+# Loading the dplyr package
+library(dplyr)
+# Subset of gdp based on country == États-Unis", "Canada", "Japon", "Belgique" et "France
+gdp2 <- filter(gdp, country == Canada | country == Japan | country == Belgium | country == France)
+```
+
