@@ -37,6 +37,18 @@ colnames(gdp)
 # Loading the dplyr package
 library(dplyr)
 # Subset of gdp based on country == États-Unis", "Canada", "Japon", "Belgique" et "France
-gdp2 <- filter(gdp, country == Canada | country == Japan | country == Belgium | country == France)
+gdp2 <- filter(gdp, country == "United States" | country == "Canada" | country == "Japan" | country == "Belgium" | country == "France")
+```
+
+```{r}
+library(tidyr)
+# Using pivot_longer() to transform from wide to gdp3
+gdp3 <- gdp2 %>% 
+  pivot_longer(!c(country), names_to = "Year", values_to = "gdp")
+```
+
+```{r}
+# Merging 2 datasets
+Gdp4 <- left_join(locations, gdp3, c("country"))
 ```
 
